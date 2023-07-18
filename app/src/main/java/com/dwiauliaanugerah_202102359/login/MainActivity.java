@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         _idEditText = (EditText) findViewById(R.id.idEditText);
         _loginButton = (Button) findViewById(R.id.loginButton);
         _passwordEditText = (EditText) findViewById(R.id.passwordEditText);
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "Selamat Datang, " + _id, Toast.LENGTH_SHORT).show();
 
                         _menuIntent = new Intent(getApplicationContext(), MenuActivity.class);
+                        _menuIntent.putExtra(MenuActivity.CALL_ID, _id);
                         startActivity(_menuIntent);
                     }
 
