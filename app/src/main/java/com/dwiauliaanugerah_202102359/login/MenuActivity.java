@@ -9,17 +9,35 @@ import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity 
 {
-    private Button _tampilMahasiswaButton, _tampilForexButton, _tampilCuacaButton;
-    private Intent _tampilMahasiswaIntent, _tampilForexIntent, _tampilCuacaIntent;
+    public static final String CALL_ID = "call_id";
+    private Button _tampilMahasiswaButton, _tampilForexButton, _tampilCuacaButton, _tampilImplicitButton;
+    private Intent _tampilMahasiswaIntent, _tampilForexIntent, _tampilCuacaIntent, _tampilImplicitIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        
+
+        String name = getIntent().getStringExtra(CALL_ID);
+        setTitle("Menu - " + name);
+
+        setContentView(R.layout.activity_menu);
         initTampilMahasiswaButton();
         initTampilForexButton();
         initTampilCuacaButton();
+        initTampilImplicitButton();
+    }
+
+    private void initTampilImplicitButton() {
+        _tampilImplicitButton = findViewById(R.id.tampilImplicitButton);
+
+        _tampilImplicitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _tampilImplicitIntent = new Intent(getApplicationContext(), ImplicitIntentMainActivity.class);
+                startActivity(_tampilImplicitIntent);
+            }
+        });
     }
 
     private void initTampilCuacaButton()
